@@ -12,7 +12,7 @@ from omega.cli.configuration import Configuration
 )
 @click.option(
     "--mapping", "-m",
-    help="Snyper mapping file",
+    help="Securonix mapping file",
     required=True,
 )
 @click.argument(
