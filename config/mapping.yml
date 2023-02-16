@@ -1,0 +1,429 @@
+title: Securonix Windows index and EventID field mapping
+order: 20
+backends:
+  - securonix-xml
+  - securonix
+  - es-qs
+logsources:
+  image_load:
+    category: image_load
+    product: windows
+    conditions:
+      rg_functionality: "Endpoint Management Systems"
+      EventID: 7
+    rewrite:
+      service: sysmon
+  driver_load:
+    category: driver_load
+    product: windows
+    conditions:
+      rg_functionality: "Endpoint Management Systems"
+      EventID: 6
+    rewrite:
+      service: sysmon
+  dns_query:
+    category: dns_query
+    product: windows
+    conditions:
+      rg_functionality: "Endpoint Management Systems"
+      Operation: "Dns query"
+    rewrite:
+      service: sysmon
+  pipe_created:
+    category: pipe_created
+    product: windows
+    conditions:
+      rg_functionality: "Endpoint Management Systems"
+      EventID:
+        - 17
+        - 18
+    rewrite:
+      service: sysmon
+  create_remote_thread:
+    category: create_remote_thread
+    product: windows
+    conditions:
+      rg_functionality: "Endpoint Management Systems"
+      EventID: 8
+    rewrite:
+      service: sysmon
+  registry_set:
+    category: registry_set
+    product: windows
+    conditions:
+      rg_functionality: "Endpoint Management Systems"
+      EventID: 13
+    rewrite:
+      service: sysmon
+  registry_delete:
+    category: registry_delete
+    product: windows
+    conditions:
+      rg_functionality: "Endpoint Management Systems"
+      EventID: 12
+    rewrite:
+      service: sysmon
+  registry_add:
+    category: registry_add
+    product: windows
+    conditions:
+      rg_functionality: "Endpoint Management Systems"
+      EventID: 12
+    rewrite:
+      service: sysmon
+  registry_rename:
+    category: registry_rename
+    product: windows
+    conditions:
+      rg_functionality: "Endpoint Management Systems"
+      EventID: 14
+    rewrite:
+      service: sysmon
+  registry_event:
+    category: registry_event
+    product: windows
+    conditions:
+      EventID:
+        - 12
+        - 13
+        - 14
+      rg_functionality:
+        - "Endpoint Management Systems"
+    rewrite:
+      service: sysmon
+  create_stream_hash:
+    category: create_stream_hash
+    product: windows
+    conditions:
+      rg_functionality: "Endpoint Management Systems"
+      EventID: 15
+    rewrite:
+      service: sysmon
+  raw_access_thread:
+    category: raw_access_thread
+    product: windows
+    conditions:
+      rg_functionality: "Endpoint Management Systems"
+      EventID: 9
+    rewrite:
+      service: sysmon
+  wmi_event:
+    category: wmi_event
+    product: windows
+    conditions:
+      rg_functionality: "Endpoint Management Systems"
+      EventID:
+        - 19
+        - 20
+        - 21
+    rewrite:
+      service: sysmon
+  network:
+    category: network_connection
+    product: windows
+    conditions:
+      rg_functionality:
+        - "Endpoint Management Systems"
+      Operation:
+        - "Network connection detected"
+        - "Network connection detected (rule: NetworkConnect)"
+  process_access:
+    category: process_access
+    product: windows
+    datasource_functionality: "Endpoint Management Systems"
+    conditions:
+      rg_functionality:
+        - "Endpoint Management Systems"
+      EventID:
+        - 10
+  file_event:
+    category: file_event
+    product: windows
+    conditions:
+      rg_functionality:
+        - "Endpoint Management Systems"
+      Operation:
+        - "File created"
+        - "File created (rule: FileCreate)"
+  file_delete:
+    category: file_delete
+    product: windows
+    conditions:
+      rg_functionality:
+        - "Endpoint Management Systems"
+      conditions:
+        EventID:
+          - 23
+          - 26
+  clipboard_capture:
+    category: clipboard_capture
+    product: windows
+    conditions:
+      rg_functionality:
+        - "Endpoint Management Systems"
+      EventID: 24
+    rewrite:
+      service: sysmon
+  process_tampering:
+    category: process_tampering
+    product: windows
+    conditions:
+      rg_functionality:
+        - "Endpoint Management Systems"
+      EventID: 25
+    rewrite:
+      service: sysmon
+  file_block:
+    category: file_block
+    product: windows
+    conditions:
+      rg_functionality:
+        - "Endpoint Management Systems"
+      EventID: 27
+    rewrite:
+      service: sysmon
+  ps_script:
+    category: ps_script
+    product: windows
+    conditions:
+      rg_functionality:
+        - "Microsoft Windows Powershell"
+      EventID: 4104
+    rewrite:
+      product: windows
+      service: powershell
+  ps_module:
+    category: ps_module
+    product: windows
+    conditions:
+      rg_functionality:
+        - "Microsoft Windows Powershell"
+      EventID: 4103
+    rewrite:
+      product: windows
+      service: powershell
+  office365:
+    category: office365
+    product: Microsoft
+    conditions:
+      rg_functionality:
+        - "Cloud Application Audit"
+  aws_cloudtrail:
+    product: AWS
+    category: CloudTrail
+    conditions:
+      rg_functionality:
+        - "Cloud Services / Applications"
+  process_creation_event:
+    category: process_creation
+    product: windows
+    conditions:
+      rg_functionality:
+        - "Endpoint Management Systems"
+      Operation:
+        - Process Create
+        - "Process Create (rule: ProcessCreate)"
+        - ProcessRollup2
+        - Procstart
+        - Process
+        - Trace Executed Process
+  windows_security:
+    product: windows
+    service: security
+    conditions:
+      rg_functionality: Microsoft Windows
+
+  windows_powershell:
+    category: powershell
+    service: windows
+    rewrite:
+      service: powershell
+  powershell_service:
+    product: windows
+    service: powershell
+    conditions:
+      rg_functionality: Microsoft Windows Powershell
+
+  webserver:
+    category: webserver
+    conditions:
+      rg_functionality: Web Server
+  proxy:
+    category: proxy
+    conditions:
+      rg_functionality: "Web Proxy"
+  linux_network:
+    category: network_connection
+    product: linux
+    conditions:
+      rg_functionality: Unix / Linux / AIX
+      Operation: Network connection detected
+  nextgen_firewall:
+    category: nextgen_firewall
+    conditions:
+      rg_functionality: Next Generation Firewall
+  firewall:
+    category: firewall
+    conditions:
+      rg_functionality: Firewall
+  webserver:
+    category: webserver
+    conditions:
+      rg_functionality: "Web Server"
+
+  windows_sysmon:
+    service: sysmon
+    conditions:
+      rg_functionality: "Endpoint Management Systems"
+  msexchange_management:
+    service: msexchange-management
+    conditions:
+      rg_functionality: "Microsoft Windows"
+  linux_process_creation_event:
+    category: process_creation
+    product: linux
+    conditions:
+      rg_functionality: Unix / Linux / AIX
+  linux_file_event:
+    category: file_event
+    product: linux
+    conditions:
+      rg_functionality: Unix / Linux / AIX
+      EventID:
+        - 11
+  linux_file_delete:
+    category: file_delete
+    product: linux
+    conditions:
+      rg_functionality: Unix / Linux / AIX
+      EventID:
+        - 23
+fieldmappings:
+  rg: resourcegroupname
+  rg_functionality: rg_functionality
+
+  EventName:
+    category=CloudTrail: deviceeventcategory
+  ErrorCode: eventoutcome
+  Operation: deviceaction
+  message: message
+  EventID: baseeventid
+  Product: product
+  PipeName: filepath
+  EventSource: resourcename
+  User: destinationusername
+  Description: description
+  url: requesturl
+  c-uri: requesturl
+  c-uri-query: requesturl
+  c-uri-path: requesturl
+  c-clientip: sourceaddress
+  sc-status: flowsiemid
+  cs-method: requestmethod
+  host: destinationhostname
+  cs-host: destinationhostname
+  Image: destinationprocessname
+  TargetObject: customstring47
+  Details: customstring48
+  Vendor: rg_vendor
+  EventType: transactionstring5
+  EventCategory: categoryobject
+  AuthenticationPackage: customstring2
+  IntegrityLevel: customstring7
+  TransactionString: transactionstring1
+  ImageLoaded: resourcecustomfield5
+  AccountName: accountname
+  State: transactionstring4
+  AllowedToDelegateTo: additionaldetails11
+  CommandLine: resourcecustomfield1
+  ComputerName: sourcehostname
+  CurrentDirectory: resourcecustomfield8
+  DestinationHostname: destinationhostname
+  DestinationIp: destinationaddress
+  Port: destinationport
+  Initiated: devicecustomstring1
+  dst_ip: destinationaddress
+  DestinationPort: destinationport
+  dst_port: destinationport
+  FileName: filename
+  Hashes: filehash
+  ImagePath: customstring54
+  ParentImagePath: oldfilepath
+  LogonProcessName: customstring43
+  NewProcessName: destinationprocessname
+  ParentCommandLine: resourcecustomfield2
+  ParentProcessName: sourceprocessname
+  ParentImage: sourceprocessname
+  Path: filepath
+  FileVersion: fileversion
+  FilePath: resourcecustomfield5
+  ProcessCommandLine: resourcecustomfield1
+  ProcessName: destinationprocessname
+  SourceIp: sourceaddress
+  src_ip: sourceaddress
+  SourcePort: sourceport
+  src_port: sourceport
+  SubjectUserName: sourceusername
+  TargetFilename: customstring49
+  WorkstationName: sourcehostname
+  IpAddress: ipaddress
+  OriginalFileName: filename
+  Message: message
+  proto: transportprotocol
+  network_application: applicationprotocol
+  Privileges: sourceuserprivileges
+  LogonType: customnumber1
+  c-useragent: requestclientapplication
+  ShareName: customstring57
+  EventLogType: eventoutcome
+  QueryResults: resourcecustomfield1
+  AccountDomain: sourcentdomain
+  QueryName: destinationhostname
+  destinationdnsdomain: destinationdnsdomain
+  ScriptBlockText: message
+  ScriptName: customstring7
+  HostApplication: devicecustomstring1
+  CommandType: customstring5
+  LogLevel: customstring9
+  RelativeTargetName: customfield1
+  ShareInformationSharePath: customstring36
+  c-outcome: categoryoutcome
+  #Status: customstring11
+  DeviceHostname: devicehostname
+  Object_Name: customstring58
+  AttrinuteName: customstring28
+  Logon_Process: customstring43
+  KeyLength: customnumber4
+  Status: resourcecustomfield4
+  SubStatus: resourcecustomfield5
+  TargetUserName: destinationusername
+  ObjectType: customstring24
+  ObjectName: customstring58
+  TargetUserSid: destinationuserid
+  SubjectUserSid: sourceuserid
+  AuthenticationPackageName: devicecustomstring4
+  requestcontext: requestcontext
+  SourceImage: oldfilepath
+  StartModule: customstring58
+  TargetImage: customstring57
+  cs-uri: requesturl
+  cs-uri-stem: requestcontext
+  cs-uri-query: requestcontext
+  cs-user-agent: requestclientapplication
+  PreviousCreationUtcTime: oldfilecreatetime
+  StartAddress: additionaldetails8
+  StartFunction: customstring69
+  Imphash: additionaldetails20
+  LogonId: customnumber9
+  md5: additionaldetails20
+  Company: customstring46
+  sha1: additionaldetails20
+  sha256: additionaldetails20
+  sha1: additionaldetails20
+  Imphash: additionaldetails20
+  md5: additionaldetails20
+  SourceHostname: sourcehostname
+  Protocol: transportprotocol
+  Contents: customstring12
+  Imphash: additionaldetails20
+  Hash: additionaldetails20
