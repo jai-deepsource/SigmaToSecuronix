@@ -221,6 +221,7 @@ logsources:
       rg_functionality:
         - "Endpoint Management Systems"
       Operation:
+        - ProcessCreate
         - Process Create
         - "Process Create (rule: ProcessCreate)"
         - ProcessRollup2
