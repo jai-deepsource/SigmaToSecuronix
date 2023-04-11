@@ -1,5 +1,5 @@
 # SigmaToSecuronix
-A simple tool for converting Sigma detection rules to Securonix Spotter queries.
+A simple tool for converting Sigma detection rules to Securonix Snypr Spotter queries.
 
 ## Prerequisites
 
@@ -16,6 +16,7 @@ pip install securonix-cli
 ```
 git clone https://github.com/Securonix/SigmaToSecuronix
 cd SigmaToSecuronix
+poetry install && poetry shell
 securonix-cli convert --mapping config/mapping.yml input_file.yml
 ```
 
