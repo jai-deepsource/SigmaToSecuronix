@@ -26,7 +26,9 @@ logsources:
     product: windows
     conditions:
       rg_functionality: "Endpoint Management Systems"
-      Operation: "Dns query"
+      Operation:
+        - "DnsQuery"
+        - "Dns query"
     rewrite:
       service: sysmon
   pipe_created:
@@ -125,6 +127,7 @@ logsources:
       rg_functionality:
         - "Endpoint Management Systems"
       Operation:
+        - "NetworkConnect"
         - "Network connection detected"
         - "Network connection detected (rule: NetworkConnect)"
   process_access:
@@ -143,6 +146,7 @@ logsources:
       rg_functionality:
         - "Endpoint Management Systems"
       Operation:
+        - FileCreate
         - "File created"
         - "File created (rule: FileCreate)"
   file_delete:
@@ -221,6 +225,7 @@ logsources:
       rg_functionality:
         - "Endpoint Management Systems"
       Operation:
+        - ProcessCreate
         - Process Create
         - "Process Create (rule: ProcessCreate)"
         - ProcessRollup2
