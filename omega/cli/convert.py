@@ -34,6 +34,6 @@ def convert(input, mapping):
             results = parser.generate(spotter_backend)
         for result in results:
             query = query + result
-        click.echo(f"\n\nindex = activity AND {query} \n\n")
+        click.echo(f"index = activity AND {query}")
     except FileNotFoundError as e:
         click.echo(f"{e}")
